@@ -24,7 +24,8 @@ images = [
 def index():
     url = random.choice(images)
     sample_string = "mjindal";
-    return render_template('index.html', url=url , str=sample_string)
+    output=subprocess.check_output("cat /proc/self/cgroup | grep kubepods | sed s/\\\\//\\\\n/g | tail -1", shell=True);
+    return render_template('index.html', url=url , str=output)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
