@@ -13,8 +13,8 @@ node('master') {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
         docker.withRegistry('https://inhvm-binrepo-01.india.mentorg.com:18018/iesd', 'bf062e7b-bb0b-4737-9d10-27b715690d60') {
-            app.push("docker.io/alpine")
-            app.push("3.5")
+            Image.push("docker.io/alpine")
+            Image.push("3.5")
         }
     }
 }
