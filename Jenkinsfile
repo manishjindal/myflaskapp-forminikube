@@ -4,10 +4,9 @@ node('docker&&linux') {
     stage('Checkout and Sync Repo') {
         /* Let's make sure we have the repository cloned to our workspace */
 
-          cleanWs()
-          checkout scm
-          githubSync repo: 'https://github.com/manishjindal/Kubernetes-for-starters' // name of equivalent ngis repo on github.com/lvtech
-          cleanWs()
+        cleanWs()
+        checkout scm
+        git branch: 'mjindal', credentialsId: 'f461068a-544a-4e84-8446-4666adca56dc', url: 'https://github.com/manishjindal/Kubernetes-for-starters'
     }
 
     stage('Build image') {
