@@ -1,10 +1,13 @@
 node('docker&&linux') {
     def app
 
-    stage('Clone repository') {
+    stage('Checkout and Sync Repo') {
         /* Let's make sure we have the repository cloned to our workspace */
 
-        checkout scm
+          cleanWs()
+          checkout scm
+          githubSync repo: 'https://github.com/manishjindal/Kubernetes-for-starters' // name of equivalent ngis repo on github.com/lvtech
+          cleanWs()
     }
 
     stage('Build image') {
@@ -20,16 +23,6 @@ node('docker&&linux') {
 
         app.inside {
             sh 'echo "Tests passed"'
-        }
-    }
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://inhvm-binrepo-01.india.mentorg.com:18018/iesd', 'bf062e7b-bb0b-4737-9d10-27b715690d60') {
-            app.push("latest")
         }
     }
 }
