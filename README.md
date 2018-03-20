@@ -71,4 +71,3 @@ export PATH = $PATH:installation_dir
 minikube start
 
 ```
-dv
