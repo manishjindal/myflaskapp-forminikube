@@ -14,6 +14,8 @@ node('docker&&linux') {
         sh "ls -l"
         sh "pwd"
         def clusterInfo = readFile "test.txt"
+        println clusterInfo;
+        println "---1--"
         def clusterMap = readClusterInfo(clusterInfo);
         print clusterMap;
         app = docker.build("manishjindal/myflaskapp-forminikube")
