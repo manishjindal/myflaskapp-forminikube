@@ -15,7 +15,7 @@ node('docker&&linux') {
         sh "pwd"
         def clusterInfo = readFile "test.txt"
         println clusterInfo;
-        println "---1--"
+        
         def clusterMap = readClusterInfo(clusterInfo);
         print clusterMap;
         app = docker.build("manishjindal/myflaskapp-forminikube")
@@ -43,13 +43,11 @@ node('docker&&linux') {
     
     for (int i=0;i<lines.size();i++) {
         println "Line = " + lines[i];
-        def clusterDeatils = lines[i].toString().split(",");
-        print "Cluster Detail = " + clusterDeatils
+        def clusterDetails = lines[i].toString().split(",");
+        print "Cluster Detail = " + clusterDetails
         clusterMap = new HashMap<String, String>();
-        for (int j = 0; j < clusterDeatils.size(); j++) {
-            print "---3---"
-            clusterElements = (clusterDeatils[j]).toString().split(":");
-            print "---4--"
+        for (int j = 0; j < clusterDetails.size(); j++) {
+            clusterElements = (clusterDetails[j]).toString().split(":");
             clusterMap.put(clusterElements[0], clusterElements[1]);
         }
         cluster.add(clusterMap);
