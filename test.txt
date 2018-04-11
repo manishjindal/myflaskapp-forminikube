@@ -1,0 +1,2 @@
+region: 'region1', name: 'test1' , releaseNamespace : 'namespace1' , apiKey: "api-key"
+region: 'region2', name: 'test2' , releaseNamespace : 'namespace2' , apiKey: "api-key"
