@@ -14,6 +14,9 @@ node('docker&&linux') {
          * docker build on the command line */
         sh "ls -l"
         sh "pwd"
+        def clusterInfo = readFile test.txt
+        def clusterMap = readClusterInfo(clusterInfo);
+        print clusterMap;
         app = docker.build("manishjindal/myflaskapp-forminikube")
     }
 
@@ -25,4 +28,23 @@ node('docker&&linux') {
             sh 'echo "Tests passed"'
         }
     }
+    
+ def ArrayList<Map<String, String>> readClusterInfoFromFile(String clusterInfoContent) {
+
+    def cluster = new ArrayList<Map<String, String>>();
+
+    def lines= clusterInfoContent.split("\n");
+
+    for (int i=0;i<lines.size();i++) {
+        clusterDeatils = lines.getAt(i).trim().split(",");
+        clusterMap = new HashMap<String, String>();
+        for (int i = 0; i < clusterDeatils.size(); i++) {
+            clusterElements = (clusterDeatils.getAt(i)).toString().split(":");
+            clusterMap.put(clusterElements.getAt(0), clusterElements.getAt(1));
+        }
+        cluster.add(clusterMap);
+    }
+    cluster
+  }
+
 }
