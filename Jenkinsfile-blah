@@ -14,7 +14,7 @@ node('docker&&linux') {
          * docker build on the command line */
         sh "ls -l"
         sh "pwd"
-        def clusterInfo = readFile test.txt
+        def clusterInfo = readFile "test.txt"
         def clusterMap = readClusterInfo(clusterInfo);
         print clusterMap;
         app = docker.build("manishjindal/myflaskapp-forminikube")
