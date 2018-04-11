@@ -30,7 +30,7 @@ node('docker&&linux') {
 
 }
 
- def ArrayList<Map<String, String>> readClusterInfoFromFile(String clusterInfoContent) {
+ def ArrayList<Map<String, String>> readClusterInfo(String clusterInfoContent) {
 
     def cluster = new ArrayList<Map<String, String>>();
 
