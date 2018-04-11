@@ -35,7 +35,9 @@ node('docker&&linux') {
     def cluster = new ArrayList<Map<String, String>>();
 
     def lines= clusterInfoContent.split("\n");
-
+    
+    print lines;
+    
     for (int i=0;i<lines.size();i++) {
         clusterDeatils = lines.getAt(i).trim().split(",");
         clusterMap = new HashMap<String, String>();
