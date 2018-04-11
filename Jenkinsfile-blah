@@ -47,7 +47,7 @@ node('docker&&linux') {
         print "Cluster Detail = " + clusterDeatils
         clusterMap = new HashMap<String, String>();
         for (int j = 0; j < clusterDeatils.size(); j++) {
-        print "---3---
+            print "---3---"
             clusterElements = (clusterDeatils.getAt(j)).toString().split(":");
             print "---4--"
             clusterMap.put(clusterElements.getAt(0), clusterElements.getAt(1));
