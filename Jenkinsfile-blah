@@ -6,7 +6,6 @@ node('docker&&linux') {
 
         cleanWs()
         checkout scm
-        git branch: 'mjindal', credentialsId: 'f461068a-544a-4e84-8446-4666adca56dc', url: 'https://github.com/manishjindal/Kubernetes-for-starters'
     }
 
     stage('Build image') {
