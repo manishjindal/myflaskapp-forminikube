@@ -40,8 +40,8 @@ node('docker&&linux') {
     for (int i=0;i<lines.size();i++) {
         clusterDeatils = lines.getAt(i).trim().split(",");
         clusterMap = new HashMap<String, String>();
-        for (int i = 0; i < clusterDeatils.size(); i++) {
-            clusterElements = (clusterDeatils.getAt(i)).toString().split(":");
+        for (int j = 0; j < clusterDeatils.size(); j++) {
+            clusterElements = (clusterDeatils.getAt(j)).toString().split(":");
             clusterMap.put(clusterElements.getAt(0), clusterElements.getAt(1));
         }
         cluster.add(clusterMap);
