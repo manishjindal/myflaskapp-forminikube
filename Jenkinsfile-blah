@@ -25,6 +25,7 @@ node('docker&&linux') {
         
         def clusterMap = setup.readClusterInfo(clusterInfo);
         print clusterMap;
+        setup.loginToDockerHub();
         app = docker.build("manishjindal/myflaskapp-forminikube")
     }
 
