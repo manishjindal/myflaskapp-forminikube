@@ -1,6 +1,13 @@
+
+
+@Library("global-lib") import com.mjindal.devops.Setup
+def setup = new Setup(this)
+
+ArrayList<Map<String,String> > availableClusters
+
 node('docker&&linux') {
     def app
-
+    
     stage('Checkout and Sync Repo') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -16,7 +23,7 @@ node('docker&&linux') {
         def clusterInfo = readFile "test.txt"
         println clusterInfo;
         
-        def clusterMap = readClusterInfo(clusterInfo);
+        def clusterMap = setup.readClusterInfo(clusterInfo);
         print clusterMap;
         app = docker.build("manishjindal/myflaskapp-forminikube")
     }
@@ -31,26 +38,3 @@ node('docker&&linux') {
     }
 
 }
-
- def ArrayList<Map<String, String>> readClusterInfo(def clusterInfoContent) {
-
-    println clusterInfoContent
-    def cluster = new ArrayList<Map<String, String>>();
-
-    def lines= clusterInfoContent.split("\n");
-    
-    //print lines.toString();
-    
-    for (int i=0;i<lines.size();i++) {
-        println "Line = " + lines[i];
-        def clusterDetails = lines[i].toString().split(",");
-        print "Cluster Detail = " + clusterDetails
-        clusterMap = new HashMap<String, String>();
-        for (int j = 0; j < clusterDetails.size(); j++) {
-            clusterElements = (clusterDetails[j]).toString().split(":");
-            clusterMap.put(clusterElements[0], clusterElements[1]);
-        }
-        cluster.add(clusterMap);
-    }
-    cluster
-  }
