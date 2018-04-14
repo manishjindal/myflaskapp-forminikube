@@ -1,6 +1,6 @@
 
 
-@Library("global-lib") import com.mjindal.devops.Setup
+@Library("devops-lib") import com.mjindal.devops.Setup
 def setup = new Setup(this)
 
 ArrayList<Map<String,String> > availableClusters
