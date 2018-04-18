@@ -21,14 +21,12 @@ node('docker&&linux') {
         sh "ls -l"
         sh "pwd"
         def clusterInfo = readFile "test.txt"
-        println clusterInfo;
+
+        def versionFileContent = readFile "version.txt"
         
-        def clusterMap = setup.readClusterInfo(clusterInfo);
+        def clusterMap = setup.readClusterInfo(clusterInfo,versionFileContent);
         print clusterMap;
         
-        def version = readFile "version.txt"
-        versionFileContent =  version.split("\n");
-        println "Version = " + versionFileContent[0];
         setup.loginToDockerHub();
         app = docker.build("manishjindal/myflaskapp-forminikube")
     }
