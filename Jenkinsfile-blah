@@ -27,7 +27,8 @@ node('docker&&linux') {
         print clusterMap;
         
         def version = readFile "version.txt"
-        println "----------------->" + version
+        versionFileContent =  version.split("\n");
+        println "Version = " + versionFileContent[0];
         setup.loginToDockerHub();
         app = docker.build("manishjindal/myflaskapp-forminikube")
     }
