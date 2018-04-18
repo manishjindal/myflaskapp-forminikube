@@ -22,7 +22,9 @@ node('docker&&linux') {
         sh "pwd"
         def clusterInfo = readFile "test.txt"
 
+        println "------11---------" + clusterInfo
         def versionFileContent = readFile "version.txt"
+        println "--------12-------" + versionFileContent
         
         def clusterMap = setup.readClusterInfo(clusterInfo,versionFileContent);
         print clusterMap;
