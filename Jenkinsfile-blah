@@ -12,7 +12,6 @@ node('docker&&linux') {
         }else{
             println "Skip Checkout"
         }
-        
     }
 
     stage('Build image') {
