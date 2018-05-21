@@ -18,7 +18,8 @@ node('docker&&linux') {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        sh "ls -l"
+        sh '''ls -l
+              if [[ $? == 0 ]]; then echo "exit status is zero..."; exit 1; fi'''
         sh "pwd"
         def clusterInfo = readFile "test.txt"
 
