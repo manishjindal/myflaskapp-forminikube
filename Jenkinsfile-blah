@@ -18,17 +18,6 @@ node('docker&&linux') {
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
-        sh '''ls -l
-              if [[ $? == 0 ]]; then echo "exit status is zero..."; exit 1; fi'''
-        sh "pwd"
-        def clusterInfo = readFile "test.txt"
-
-        println "------11---------" + clusterInfo
-        def versionFileContent = readFile "version.txt"
-        println "--------12-------" + versionFileContent
-        
-        def clusterMap = setup.readClusterInfo(clusterInfo,versionFileContent);
-        print clusterMap;
         
         setup.loginToDockerHub();
         app = docker.build("manishjindal/myflaskapp-forminikube")
