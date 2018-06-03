@@ -13,7 +13,7 @@ node('docker&&linux') {
 
         cleanWs()
         checkout scm
-        
+        sh 'aws --version'
         withAWS(credentials: 'aws-user-pass') {
             aws -version
             aws configure list
