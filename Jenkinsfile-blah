@@ -15,8 +15,8 @@ node('docker&&linux') {
         checkout scm
         sh 'aws --version'
         withAWS(credentials: 'aws-user-pass') {
-            aws -version
-            aws configure list
+            sh 'aws -version'
+            sh 'aws configure list'
         }
 
     }
