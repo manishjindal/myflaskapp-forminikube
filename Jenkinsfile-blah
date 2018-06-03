@@ -13,6 +13,12 @@ node('docker&&linux') {
 
         cleanWs()
         checkout scm
+        
+        withAWS(credentials: 'aws-user-pass') {
+            aws -version
+            aws configure list
+        }
+
     }
 
     stage('Build image') {
